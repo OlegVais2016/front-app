@@ -10,6 +10,25 @@ import { ContentComponent } from './content/content.component';
 import { AllUsersComponent } from './content/all-users/all-users.component';
 import { AddNewComponent } from './content/add-new/add-new.component';
 
+import {RouterModule, Routes} from "@angular/router";
+
+const routes: Routes = [
+  {
+    path: 'users/all',
+    component: AllUsersComponent
+  },
+
+  {
+    path: 'users/add',
+    component: AddNewComponent
+  },
+
+  {
+    path: '',
+    component: AllUsersComponent
+  }
+];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +41,8 @@ import { AddNewComponent } from './content/add-new/add-new.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
