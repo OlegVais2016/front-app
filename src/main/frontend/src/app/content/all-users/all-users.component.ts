@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import User from "../../model/User";
 import {UserHttpService} from "../../user-http.service";
 
@@ -8,6 +8,7 @@ import {UserHttpService} from "../../user-http.service";
   styleUrls: ['./all-users.component.css']
 })
 export class AllUsersComponent implements OnInit {
+
   public users: User [] = [];
   constructor(private userHttpService: UserHttpService) {
   }
@@ -17,20 +18,10 @@ export class AllUsersComponent implements OnInit {
       .subscribe(data => this.users = data);
   }
 
-  /*private httpClient: HttpClient;
-
-  public users: User [] = [];
-
-  constructor(httpClient: HttpClient) {
-    this.httpClient = httpClient;
+  delete(user: User): void {
+    this.users = this.users.filter(h => h !== user);
+    this.userHttpService.deleteUser(user).subscribe();
   }
-
-  getUsers(){
-    return this.httpClient
-      .get<User []>("api/users")
-      .subscribe(data => this.users = data);
-  }
-*/
   ngOnInit() {
     this.getUsers();
   }

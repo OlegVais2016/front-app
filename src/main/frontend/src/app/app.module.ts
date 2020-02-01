@@ -12,6 +12,7 @@ import { AddNewComponent } from './content/add-new/add-new.component';
 
 import {RouterModule, Routes} from "@angular/router";
 
+
 const routes: Routes = [
   {
     path: 'users/all',
@@ -36,6 +37,7 @@ const routes: Routes = [
     ContentComponent,
     AllUsersComponent,
     AddNewComponent
+
   ],
   imports: [
     BrowserModule,

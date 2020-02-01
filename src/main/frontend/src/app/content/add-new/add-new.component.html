@@ -1,11 +1,22 @@
-<div class="container">
-  <div class="card">
-    <div class="card-header alert-success">
-      Add new
-    </div>
+<h2>Add new</h2>
 
-    <div class="card-body">
-      <h1>this is my body</h1>
-    </div>
-  </div>
+<div>
+  <label>First name:
+    <input #firstName />
+  </label>
+  <label>Last name:
+  <input #lastName />
+  </label>
+  <label>Age:
+    <input #age />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(firstName.value,lastName.value,Number(age.value));
+   firstName.value=''; lastName.value='' ; age.value=''">
+    add
+  </button>
 </div>
+
+
+
+
