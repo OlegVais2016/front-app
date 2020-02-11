@@ -8,6 +8,9 @@ import com.telran.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -34,4 +37,26 @@ public class UserServiceImpl implements UserService {
     public void deleteById(String userId) {
         userRepository.deleteById(userId);
     }
+
+    @Override
+    public UserResponse findById(String userId) {
+        User user = userRepository.findById(userId).orElse(null);
+        assert user != null;
+        return UserResponse.builder()
+                .userId(user.getUserId())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .age(user.getAge())
+                .build();
+    }
+
+    @Override
+    public List<UserResponse> findAll() {
+
+        return userRepository.findAll()
+                .stream()
+                .map(UserResponse::new)
+                .collect(Collectors.toList());
+    }
 }
+

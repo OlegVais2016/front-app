@@ -1,5 +1,6 @@
 package com.telran.demo.model.dto;
 
+import com.telran.demo.model.entity.User;
 import lombok.*;
 
 
@@ -16,4 +17,10 @@ public class UserResponse {
     private String lastName;
     private Integer age;
 
+    public UserResponse(User user) {
+        this.userId = user.getUserId();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.age = user.getAge();
+    }
 }

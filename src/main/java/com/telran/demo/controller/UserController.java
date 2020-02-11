@@ -26,15 +26,15 @@ public class UserController {
     public void delete(@PathVariable String userId){
         userService.deleteById(userId);
     }
-/*
-    //users/:id
+
+
     @GetMapping("/users/{id}")
-    public User getById(@PathVariable("id") String userId) {
-        return userRepository.findById(userId).orElse(null);
+    public UserResponse getById(@PathVariable("id") String userId) {
+        return userService.findById(userId);
     }
 
     @GetMapping("/users")
-    public List<User> getAll() {
-        return userRepository.findAll();
-    }*/
+    public List<UserResponse> getAll() {
+        return userService.findAll();
+    }
 }
