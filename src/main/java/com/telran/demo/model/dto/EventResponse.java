@@ -1,20 +1,16 @@
-package com.telran.demo.model.entity;
+package com.telran.demo.model.dto;
 
+import com.telran.demo.model.entity.User;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @Builder
+public class EventResponse {
 
-@Document(collection = "events")
-public class Event {
-
-    @Id
     private String id;
     private String city;
     private String street;

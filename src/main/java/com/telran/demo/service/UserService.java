@@ -2,7 +2,7 @@ package com.telran.demo.service;
 
 import com.telran.demo.model.dto.UserRequest;
 import com.telran.demo.model.dto.UserResponse;
-import com.telran.demo.model.entity.User;
+
 
 import java.util.List;
 
