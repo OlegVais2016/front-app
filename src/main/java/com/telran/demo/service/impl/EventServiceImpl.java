@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -47,13 +47,24 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    public void deleteEvent(String userId, String eventId) {
+       
+        Event event = eventRepository.findById(eventId)
+                .orElseThrow(() -> new EventNotFoundException(eventId));
+        if(userId.equals(event.getArranger().getUserId()))
+
+            eventRepository.deleteById(eventId);
+
+    }
+
+    @Override
     public void submitToEvent(String userId, String eventId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new EventNotFoundException(eventId));
         List<User> users = event.getParticipants();
-        if(users.isEmpty()){
+        if(users == null){
             List<User> userList = new ArrayList<>();
             userList.add(user);
             Event addFirst = Event.builder()
@@ -65,7 +76,7 @@ public class EventServiceImpl implements EventService {
                     .participants(userList)
                     .build();
             eventRepository.save(addFirst);
-        } if(!users.isEmpty()) {
+        } if(users != null) {
             users.add(user);
             Event addOthers = Event.builder()
                     .id(event.getId())
@@ -77,6 +88,5 @@ public class EventServiceImpl implements EventService {
                     .build();
             eventRepository.save(addOthers);
         }
-
     }
 }

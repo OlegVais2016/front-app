@@ -22,6 +22,13 @@ public class EventController {
         return eventService.save(eventRequest,userId);
     }
 
+    @DeleteMapping("/events/del/{userId}/{eventId}")
+    public String deleteEvent(@PathVariable String userId,
+                              @PathVariable String eventId){
+        eventService.deleteEvent(userId,eventId);
+        return "Event deleted";
+    }
+
     @PostMapping("/events/{userId}/{eventId}")
     public String submitToEvent(@PathVariable String userId,
                                 @PathVariable String eventId){
