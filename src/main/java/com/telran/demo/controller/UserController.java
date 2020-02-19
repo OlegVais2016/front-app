@@ -17,7 +17,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-
     @PostMapping("/users")
     public UserResponse add(@RequestBody UserRequest userRequest) {
         return userService.save(userRequest);
